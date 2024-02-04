@@ -66,7 +66,7 @@ public struct ServerMessage {
             
             let keyValue = row.split(separator: MessageParser.colon, maxSplits: 1)
             let key = keyValue[0].utf8String.trimmingCharacters(in: .whitespaces)
-            let value = keyValue[safe: 1]?.utf8String.trimmingCharacters(in: .whitespaces)
+            let value = keyValue[safe: 1]?.utf8String
             
             switch key {
             case "id":
