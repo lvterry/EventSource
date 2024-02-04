@@ -74,10 +74,15 @@ public struct ServerMessage {
             case "event":
                 message.event = value?.trimmingCharacters(in: .whitespaces)
             case "data":
-                if let existingData = message.data {
-                    message.data = existingData + "\n" + (value?.trimmingCharacters(in: .whitespaces) ?? "")
-                } else {
-                    message.data = value?.trimmingCharacters(in: .whitespaces)
+                if var val = value {
+                    if val.hasPrefix(" ") {
+                        val.removeFirst()
+                    }
+                    if let existingData = message.data {
+                        message.data = existingData + "\n" + val
+                    } else {
+                        message.data = val
+                    }
                 }
             case "time":
                 message.time = value?.trimmingCharacters(in: .whitespaces)
